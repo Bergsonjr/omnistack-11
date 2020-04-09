@@ -9,21 +9,21 @@ module.exports = {
 
             await connection('ongs').insert({ id, name, email, whatsapp, city, uf })
 
-            return res.status(201).json({ id })
+            res.status(201).json({ id }).end()
         }
         catch (error) {
-            return res.status(400).json(error)
+            res.status(400).json(error).end()
         }
     },
 
-    index: async () => {
+    index: async (req, res) => {
         try {
             const ongs = await connection('ongs').select('*')
 
-            return res.status(200).json(ongs);
+            res.status(200).json(ongs).end()
         }
         catch (error) {
-            return res.status(400).json(error)
+            res.status(400).json(error).end()
         }
     }
 }
